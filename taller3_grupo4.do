@@ -27,8 +27,6 @@ log using "taller3_grupo4.log", replace /*Empezar el log file*/
 
 use "taller_3_base - Copy.dta", clear
 
-*ssc install outreg, replace
-
 *________________________________________________________________________________
 
 * 1. Balance muestral
