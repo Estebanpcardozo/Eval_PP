@@ -1,9 +1,9 @@
 
 *==============================================================================*
 *				 		EVALUACION POLITICA PUBICA   2024-2					   *
-*							TALLER 3 DO file								   *
+*							TALLER 3 Do file								   *
 * 	POR: Laura Pardo, José E González, Julián Pulido  Luis Castellanos   	   *
-* 							22 de Septiembre  DE 2024						   *
+* 							23 de Septiembre  DE 2024						   *
 * 							 	STATA 18.0									   *  
 *==============================================================================*
 
@@ -15,13 +15,13 @@ set more off
 *Establecemos un directorio de trabajo
 
 *CD Laura
-*cd "C:\Users\Heitz\Desktop\Evaluación de Impacto  EGOB\Taller 3"
+cd "C:\Users\Heitz\Desktop\Evaluación de Impacto  EGOB\Taller 3"
 
 *CD Julian
 *cd"/Users/User/Library/CloudStorage/OneDrive-Universidaddelosandes/2024-2 Evaluación de Políticas Públicas/Talleres/Taller 3-Evaluación Experimental/"
 
 *CD Luis
-cd "D:\OneDrive - Universidad de los andes\EPP\Talleres\Do\Eval_PP"
+*cd "D:\OneDrive - Universidad de los andes\EPP\Talleres\Do\Eval_PP"
 
 log using "taller3_grupo4.log", replace /*Empezar el log file*/
 
@@ -29,9 +29,7 @@ use "taller_3_base - Copy.dta", clear
 
 *________________________________________________________________________________
 
-* 1. Balance muestral
-
-* -------------------------------------------------------------------------------
+* Punto 4- Balance muestral ----------------------------------------------------
 {
 // Ejecuta los T-tests solo con las variables seleccionadas
 table (command) (result), ///
@@ -86,37 +84,9 @@ collect export t_test1.docx, replace
 	
 *) Enfoque 2: Análisis de regresión		
 
-reg treatment mean_annual_wage_inc_b
-eststo M1
+reg treatment mean_annual_wage_inc_b num_migrants_b saved_past_year_b num_children_b log_tot_loanvalue_1_b productivity_b below_ipoverty_line_b household_size_b anymobile normal_calories_b consumption_value_b
 
-reg treatment num_migrants_b
-eststo M2
-
-reg treatment saved_past_year_b
-eststo M3
-
-reg treatment num_children_b
-eststo M4
-reg treatment log_tot_loanvalue_1_b
-eststo M5
-reg treatment productivity_b
-eststo M6
-reg treatment below_ipoverty_line_b
-eststo M7
-reg treatment household_size_b
-eststo M8
-reg treatment anymobile
-eststo M9
-reg treatment normal_meals_b
-eststo M10
-reg treatment normal_calories_b
-eststo M11
-reg treatment consumption_value_b
-eststo M12
-
-
-// Exportar la tabla con el título
-outreg2 [M1 M2 M3 M4 M5 M6 M7 M8 M9 M10 M11 M12] using regressions.doc, title("Tabla 2. Tabla de balance") replace
+outreg2 using regressionUnica.doc, title("Tabla 2. Tabla de balance") replace
 
 }
 
@@ -155,4 +125,25 @@ esttab r* , b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N r2) drop(_cons ${co
 
 }
 
+**# 7. Efectos heterogeneos:
+/*
+Calcule los efectos heterogéneos del programa sobre las horas de estudio (study_hour) por el género del jefe de hogar (hohh_female; =1 si el jefe de hogar es mujer, 0 si hombre). Interprete los tres coeficientes de su regresión, y su intercepto. ¿Hay un efecto del programa diferenciado para hogares liderados por hombres versus mujeres?  
+*/
+
+{
+* Crear la variable de interacción:
+label variable hohh_female "Jefe del hogar es mujer"
+gen treatment_female_study = treatment * hohh_female
+label variable treatment_female "Capacitación * Jefe mujer"
+
+reg study_hour treatment hohh_female treatment_female, r
+eststo heterogeneity
+esttab heterogeneity, b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N r2), using "resultados_heterogeneos.doc",rtf replace label
+*reg active_account treatment hohh_female treatment_female, r
+*reg normal_calorie_sufficiency treatment hohh_female treatment_female, r
+*reg attendance treatment hohh_female treatment_female, r
+
+
+	
+}
 
