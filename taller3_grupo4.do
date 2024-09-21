@@ -15,13 +15,13 @@ set more off
 *Establecemos un directorio de trabajo
 
 *CD Laura
-cd "C:\Users\Heitz\Desktop\Evaluación de Impacto  EGOB\Taller 3"
+*cd "C:\Users\Heitz\Desktop\Evaluación de Impacto  EGOB\Taller 3"
 
 *CD Julian
 *cd"/Users/User/Library/CloudStorage/OneDrive-Universidaddelosandes/2024-2 Evaluación de Políticas Públicas/Talleres/Taller 3-Evaluación Experimental/"
 
-*Rellenar directorio de trabajo para revisión
-*cd ""
+*CD Luis
+cd "D:\OneDrive - Universidad de los andes\EPP\Talleres\Do\Eval_PP"
 
 log using "taller3_grupo4.log", replace /*Empezar el log file*/
 
