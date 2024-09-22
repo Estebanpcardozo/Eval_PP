@@ -84,7 +84,7 @@ collect export t_test1.docx, replace
 	
 *) Enfoque 2: Análisis de regresión		
 
-reg treatment mean_annual_wage_inc_b num_migrants_b saved_past_year_b num_children_b log_tot_loanvalue_1_b productivity_b below_ipoverty_line_b household_size_b anymobile normal_calories_b consumption_value_b
+reg treatment mean_annual_wage_inc_b num_migrants_b saved_past_year_b num_children_b log_tot_loanvalue_1_b productivity_b below_ipoverty_line_b household_size_b anymobile normal_calories_b consumption_value_b,r
 
 outreg2 using regressionUnica.doc, title("Tabla 2. Tabla de balance") replace
 
