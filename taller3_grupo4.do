@@ -23,6 +23,9 @@ cd "C:\Users\Heitz\Desktop\Evaluación de Impacto  EGOB\Taller 3"
 *CD Luis
 *cd "D:\OneDrive - Universidad de los andes\EPP\Talleres\Do\Eval_PP"
 
+*CD José
+*cd "C:\Users\jedog\OneDrive\Desktop\SEMESTRE 2024-2\EVALUACIÓN DE POLÍTICAS PÚBLICAS\TALLERES\TALLER 3"
+
 log using "taller3_grupo4.log", replace /*Empezar el log file*/
 
 use "taller_3_base - Copy.dta", clear
