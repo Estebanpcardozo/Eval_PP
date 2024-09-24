@@ -15,13 +15,13 @@ set more off
 *Establecemos un directorio de trabajo
 
 *CD Laura
-cd "C:\Users\Heitz\Desktop\Evaluación de Impacto  EGOB\Taller 3"
+*cd "C:\Users\Heitz\Desktop\Evaluación de Impacto  EGOB\Taller 3"
 
 *CD Julian
 *cd"/Users/User/Library/CloudStorage/OneDrive-Universidaddelosandes/2024-2 Evaluación de Políticas Públicas/Talleres/Taller 3-Evaluación Experimental/"
 
 *CD Luis
-*cd "D:\OneDrive - Universidad de los andes\EPP\Talleres\Do\Eval_PP"
+cd "D:\OneDrive - Universidad de los andes\EPP\Talleres\Do\Eval_PP"
 
 *CD José
 *cd "C:\Users\jedog\OneDrive\Desktop\SEMESTRE 2024-2\EVALUACIÓN DE POLÍTICAS PÚBLICAS\TALLERES\TALLER 3"
@@ -142,11 +142,7 @@ label variable treatment_female "Capacitación * Jefe mujer"
 reg study_hour treatment hohh_female treatment_female, r
 eststo heterogeneity
 esttab heterogeneity, b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N r2), using "resultados_heterogeneos.doc",rtf replace label
-*reg active_account treatment hohh_female treatment_female, r
-*reg normal_calorie_sufficiency treatment hohh_female treatment_female, r
-*reg attendance treatment hohh_female treatment_female, r
-
-
-	
 }
 
+log close
+exit

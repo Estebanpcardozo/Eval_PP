@@ -1,0 +1,33 @@
+Tabla 2. Tabla de balance	
+	(1)
+VARIABLES	treatment
+	
+mean_annual_wage_inc_b	-0.000
+	(0.000)
+num_migrants_b	0.078*
+	(0.046)
+saved_past_year_b	0.077
+	(0.092)
+num_children_b	-0.022
+	(0.054)
+log_tot_loanvalue_1_b	-0.013
+	(0.011)
+productivity_b	0.018
+	(0.074)
+below_ipoverty_line_b	-0.088
+	(0.102)
+household_size_b	0.045
+	(0.036)
+anymobile	-0.012
+	(0.237)
+normal_calories_b	-0.001
+	(0.001)
+consumption_value_b	-0.000
+	(0.000)
+Constant	0.498
+	(0.305)
+	
+Observations	174
+R-squared	0.045
+Robust standard errors in parentheses	
+*** p<0.01, ** p<0.05, * p<0.1	

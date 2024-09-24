@@ -1,580 +1,471 @@
------------------------------------------------
+---------------------------------------------------------------------------
       name:  <unnamed>
-       log:  D:\OneDrive - Universidad de los a
-> ndes\EPP\Talleres\Do\Eval_PP\taller3_grupo4.l
-> og
+       log:  D:\OneDrive - Universidad de los andes\EPP\Talleres\Do\Eval_PP
+> \taller3_grupo4.log
   log type:  text
- opened on:  21 Sep 2024, 15:35:56
+ opened on:  23 Sep 2024, 21:00:11
 
 . 
 . use "taller_3_base - Copy.dta", clear
 
 . 
-end of do-file
-
-. br
-
-. do "C:\Users\POWER\AppData\Local\Temp\STD85c4
-> _000000.tmp"
-
-. *Punto 5 ------------------------------------
-> -----------------------------------
-. *Calcule el impacto del programa sobre si el 
-> hogar tenía una cuenta activa de bKash (activ
-> e_account) y dos resultados de interés: sufic
-> iencia calórica  (normal_calorie_sufficiency)
-> , y asistencia escolar (attendance).  Para ca
-> da variable de resultado, estimen primero los
->  resultados sin controles (primera columna), 
-> y después controlando por las siguientes vari
-> ables: sexo, edad, si el jefe de hogar comple
-> tó primaria, y el tamaño del hogar  (segunda 
-> columna de cada resultado).
+. *________________________________________________________________________
+> ________
+. 
+. * Punto 4- Balance muestral ---------------------------------------------
+> -------
 . {
-. global controles hohh_female hohh_age hohh_co
-> mpleted_primary household_size_b
+. // Ejecuta los T-tests solo con las variables seleccionadas
+. table (command) (result), ///
+>     command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1
+> ) de_control=r(sd_1) ///
+>     Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest mean_annual_wage_i
+> nc_b, by(treatment)) ///
+>     command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1
+> ) de_control=r(sd_1) ///
+>     Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest num_migrants_b, by
+> (treatment)) ///
+>     command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1
+> ) de_control=r(sd_1) ///
+>     Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest saved_past_year_b,
+>  by(treatment)) ///
+>     command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1
+> ) de_control=r(sd_1) ///
+>     Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest num_children_b, by
+> (treatment)) ///
+>     command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1
+> ) de_control=r(sd_1) ///
+>     Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest log_tot_loanvalue_
+> 1_b, by(treatment)) ///
+>     command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1
+> ) de_control=r(sd_1) ///
+>     Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest productivity_b, by
+> (treatment)) ///
+>     command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1
+> ) de_control=r(sd_1) ///
+>     Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest below_ipoverty_lin
+> e_b, by(treatment)) ///
+>     command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1
+> ) de_control=r(sd_1) ///
+>     Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest household_size_b, 
+> by(treatment)) ///
+>     command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1
+> ) de_control=r(sd_1) ///
+>     Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest anymobile, by(trea
+> tment)) ///
+>     command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1
+> ) de_control=r(sd_1) ///
+>     Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest normal_meals_b, by
+> (treatment)) ///
+>     command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1
+> ) de_control=r(sd_1) ///
+>     Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest normal_calories_b,
+>  by(treatment)) ///
+>     command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1
+> ) de_control=r(sd_1) ///
+>     Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest consumption_value_
+> b, by(treatment)) ///
+>     nformat(%3.2f) stars(p_value 0.1 "*" 0.05 "**" 0.01 "***", shownote) 
+> name(t_test1) replace
+
+-----------------------------------------------------------------------------------------------------------------------------
+                                            |  media_tratado   de_tratado   media_control   de_control   Difference   p_value
+--------------------------------------------+--------------------------------------------------------------------------------
+ttest mean_annual_wage_inc_b, by(treatment) |       58762.86     45313.60        58468.52     45244.25       294.35      0.93
+ttest normal_meals_b, by(treatment)         |           3.00         0.05            3.00         0.00        -0.00      0.32
+ttest normal_calories_b, by(treatment)      |         114.54        40.84          117.85        48.52        -3.31      0.29
+ttest consumption_value_b, by(treatment)    |         406.96       930.18          454.50      1440.75       -47.53      0.58
+ttest num_migrants_b, by(treatment)         |           1.22         0.93            1.15         0.78         0.07      0.26
+ttest saved_past_year_b, by(treatment)      |           0.54         0.50            0.50         0.50         0.04      0.25
+ttest num_children_b, by(treatment)         |           1.17         1.01            1.23         1.07        -0.06      0.42
+ttest log_tot_loanvalue_1_b, by(treatment)  |           4.56         4.22            4.82         4.29        -0.26      0.38
+ttest productivity_b, by(treatment)         |           0.03         0.58           -0.03         0.59         0.06      0.48
+ttest below_ipoverty_line_b, by(treatment)  |           0.49         0.50            0.53         0.50        -0.03      0.34
+ttest household_size_b, by(treatment)       |           3.77         1.64            3.84         1.60        -0.07      0.56
+ttest anymobile, by(treatment)              |           0.97         0.18            0.97         0.16        -0.01      0.58
+-----------------------------------------------------------------------------------------------------------------------------
+*** p<.01, ** p<.05, * p<.1
 . 
-. *Regresión básica - Cuenta activa
-. reg active_account treatment,r
+. // Ajusta la tabla después de correr los comandos
+. collect set t_test1
+(current collection is t_test1)
+. collect label levels command ///
+>     1 "Media del Salario Anual" ///
+>     2 "Numero de migrantes" ///
+>     3 "Ahorrado en el pasado año" ///
+>     4 "Numero de Niños en hogar" ///
+>     5 "Logaritmo total Prestamo" ///
+>     6 "Productividad" ///
+>     7 "Debajo de la linea de Pobreza" ///
+>     8 "Tamaño del hogar" ///
+>     9 "Cualquier Móvil" ///
+>     10 "Comidas Normales" ///
+>     11 "Calorías Normales" ///
+>     12 "Valor de Consumo", modify
+. 
+. collect title "Tabla. T-tests comparación tratados vs control"
+. collect preview
 
-Linear regression                              
->  Number of obs     =        813
-                                               
->  F(1, 811)         =     247.53
-                                               
->  Prob > F          =     0.0000
-                                               
->  R-squared         =     0.2334
-                                               
->  Root MSE          =     .43707
+Tabla. T-tests comparación tratados vs control
+---------------------------------------------------------------------------------------------------------------
+                              |  media_tratado   de_tratado   media_control   de_control   Difference   p_value
+------------------------------+--------------------------------------------------------------------------------
+Media del Salario Anual       |       58762.86     45313.60        58468.52     45244.25       294.35      0.93
+Comidas Normales              |           3.00         0.05            3.00         0.00        -0.00      0.32
+Calorías Normales             |         114.54        40.84          117.85        48.52        -3.31      0.29
+Valor de Consumo              |         406.96       930.18          454.50      1440.75       -47.53      0.58
+Numero de migrantes           |           1.22         0.93            1.15         0.78         0.07      0.26
+Ahorrado en el pasado año     |           0.54         0.50            0.50         0.50         0.04      0.25
+Numero de Niños en hogar      |           1.17         1.01            1.23         1.07        -0.06      0.42
+Logaritmo total Prestamo      |           4.56         4.22            4.82         4.29        -0.26      0.38
+Productividad                 |           0.03         0.58           -0.03         0.59         0.06      0.48
+Debajo de la linea de Pobreza |           0.49         0.50            0.53         0.50        -0.03      0.34
+Tamaño del hogar              |           3.77         1.64            3.84         1.60        -0.07      0.56
+Cualquier Móvil               |           0.97         0.18            0.97         0.16        -0.01      0.58
+---------------------------------------------------------------------------------------------------------------
+*** p<.01, ** p<.05, * p<.1
+. collect style cell command[2 4]#result[media_tratado de_tratado media_con
+> trol de_control Difference p_value stars]
+. collect export t_test1.docx, replace
+(collection t_test1 exported to file t_test1.docx)
+. 
+. 
+.         
+. *) Enfoque 2: Análisis de regresión           
+. 
+. reg treatment mean_annual_wage_inc_b num_migrants_b saved_past_year_b num
+> _children_b log_tot_loanvalue_1_b productivity_b below_ipoverty_line_b ho
+> usehold_size_b anymobile normal_calories_b consumption_value_b,r
 
------------------------------------------------
-> -------------------------------
+Linear regression                               Number of obs     =        
+> 174
+                                                F(11, 162)        =       0
+> .93
+                                                Prob > F          =     0.5
+> 179
+                                                R-squared         =     0.0
+> 449
+                                                Root MSE          =     .50
+> 639
+
+---------------------------------------------------------------------------
+> ---
              |               Robust
-active_acc~t | Coefficient  std. err.      t   
->  P>|t|                                       
->            [95% con                          
->                    f. interval]
--------------+---------------------------------
-> -------------------------------
-   treatment |   .4818245   .0306249    15.73  
->  0.000                                       
->            .4217111                          
->                        .5419378
-       _cons |   .2189055   .0206491    10.60  
->  0.000                                       
->            .1783734                          
->                        .2594375
------------------------------------------------
-> -------------------------------
-. est sto r1 
+   treatment | Coefficient  std. err.      t    P>|t|     [95% conf. interv
+> al]
+-------------+-------------------------------------------------------------
+> ---
+mean_annua~b |  -4.34e-07   9.84e-07    -0.44   0.660    -2.38e-06    1.51e
+> -06
+num_migran~b |    .077805   .0461106     1.69   0.093    -.0132503    .1688
+> 602
+saved_past~b |   .0770138   .0924956     0.83   0.406    -.1056388    .2596
+> 664
+num_childr~b |  -.0217296    .054483    -0.40   0.691    -.1293181    .0858
+> 589
+log_tot_lo~b |  -.0132161   .0107641    -1.23   0.221    -.0344722      .00
+> 804
+productivi~b |   .0179881   .0736929     0.24   0.807    -.1275345    .1635
+> 107
+below_ip~e_b |  -.0876532   .1015914    -0.86   0.390    -.2882674    .1129
+> 609
+househol~e_b |   .0445569   .0362811     1.23   0.221     -.027088    .1162
+> 017
+   anymobile |   -.011501   .2372456    -0.05   0.961    -.4799937    .4569
+> 917
+normal_c~s_b |  -.0006698   .0009069    -0.74   0.461    -.0024607    .0011
+> 211
+consumpt~e_b |  -.0000153   .0000235    -0.65   0.514    -.0000617     .000
+> 031
+       _cons |   .4983865     .30494     1.63   0.104    -.1037833    1.100
+> 556
+---------------------------------------------------------------------------
+> ---
 . 
-. *Regresión con controles - Cuenta activa 
-. reg active_account treatment ${controles},r
-
-Linear regression                              
->  Number of obs     =        813
-                                               
->  F(5, 807)         =      54.54
-                                               
->  Prob > F          =     0.0000
-                                               
->  R-squared         =     0.2420
-                                               
->  Root MSE          =      .4357
-
------------------------------------------------
-> -------------------------------
-             |               Robust
-active_acc~t | Coefficient  std. err.      t   
->  P>|t|                                       
->            [95% con                          
->                    f. interval]
--------------+---------------------------------
-> -------------------------------
-   treatment |   .4834017   .0305696    15.81  
->  0.000                                       
->            .4233964                          
->                         .543407
- hohh_female |   .1044925   .0510385     2.05  
->  0.041                                       
->            .0043088                          
->                        .2046763
-    hohh_age |  -.0019787   .0012353    -1.60  
->  0.110                                       
->           -.0044035                          
->                        .0004461
-hohh_compl~y |    .062452   .0420511     1.49  
->  0.138                                       
->           -.0200905                          
->                        .1449945
-househol~e_b |   .0114977   .0103139     1.11  
->  0.265                                       
->           -.0087475                          
->                        .0317429
-       _cons |   .2428445   .0642655     3.78  
->  0.000                                       
->            .1166972                          
->                        .3689917
------------------------------------------------
-> -------------------------------
-. est sto r4 
-. 
-. *Regresión básica - Suficiencia Calorica
-. reg normal_calorie_sufficiency treatment,r
-
-Linear regression                              
->  Number of obs     =        813
-                                               
->  F(1, 811)         =       3.49
-                                               
->  Prob > F          =     0.0623
-                                               
->  R-squared         =     0.0043
-                                               
->  Root MSE          =     123.87
-
------------------------------------------------
-> -------------------------------
-             |               Robust
-no~fficiency | Coefficient  std. err.      t   
->  P>|t|                                       
->            [95% con                          
->                    f. interval]
--------------+---------------------------------
-> -------------------------------
-   treatment |   16.22284   8.689892     1.87  
->  0.062                                       
->            -.834494                          
->                        33.28017
-       _cons |   -275.433   6.199671   -44.43  
->  0.000                                       
->           -287.6023                          
->                       -263.2637
------------------------------------------------
-> -------------------------------
-. est sto r2
-. 
-. *Regresión con controles - Suficiencia Calori
-> ca
-. reg normal_calorie_sufficiency treatment ${co
-> ntroles},r
-
-Linear regression                              
->  Number of obs     =        813
-                                               
->  F(5, 807)         =      98.64
-                                               
->  Prob > F          =     0.0000
-                                               
->  R-squared         =     0.4418
-                                               
->  Root MSE          =     92.978
-
------------------------------------------------
-> -------------------------------
-             |               Robust
-no~fficiency | Coefficient  std. err.      t   
->  P>|t|                                       
->            [95% con                          
->                    f. interval]
--------------+---------------------------------
-> -------------------------------
-   treatment |   14.33246   6.574214     2.18  
->  0.030                                       
->            1.427884                          
->                        27.23704
- hohh_female |   63.66007   9.687236     6.57  
->  0.000                                       
->            44.64492                          
->                        82.67522
-    hohh_age |  -.6198895   .2527786    -2.45  
->  0.014                                       
->           -1.116071                          
->                       -.1237083
-hohh_compl~y |   .8155021   9.831444     0.08  
->  0.934                                       
->           -18.48272                          
->                        20.11372
-househol~e_b |  -44.80443   2.639366   -16.98  
->  0.000                                       
->           -49.98527                          
->                        -39.6236
-       _cons |  -83.26966   14.17956    -5.87  
->  0.000                                       
->           -111.1028                          
->                       -55.43649
------------------------------------------------
-> -------------------------------
-. est sto r5
-. 
-. 
-. *Regresión básica - Asistencia escolar
-. reg attendance treatment, r
-
-Linear regression                              
->  Number of obs     =        397
-                                               
->  F(1, 395)         =       0.47
-                                               
->  Prob > F          =     0.4930
-                                               
->  R-squared         =     0.0012
-                                               
->  Root MSE          =     .46734
-
------------------------------------------------
-> -------------------------------
-             |               Robust
-  attendance | Coefficient  std. err.      t   
->  P>|t|                                       
->            [95% con                          
->                    f. interval]
--------------+---------------------------------
-> -------------------------------
-   treatment |    .032203   .0469331     0.69  
->  0.493                                       
->           -.0600669                          
->                        .1244728
-       _cons |   .3027027   .0338632     8.94  
->  0.000                                       
->            .2361281                          
->                        .3692773
------------------------------------------------
-> -------------------------------
-. est sto r3
-. 
-. *Regresión con controles - Asistencia escolar
-. reg attendance treatment ${controles},r
-
-Linear regression                              
->  Number of obs     =        397
-                                               
->  F(5, 391)         =       2.39
-                                               
->  Prob > F          =     0.0377
-                                               
->  R-squared         =     0.0320
-                                               
->  Root MSE          =     .46241
-
------------------------------------------------
-> -------------------------------
-             |               Robust
-  attendance | Coefficient  std. err.      t   
->  P>|t|                                       
->            [95% con                          
->                    f. interval]
--------------+---------------------------------
-> -------------------------------
-   treatment |   .0219891   .0470423     0.47  
->  0.640                                       
->           -.0704985                          
->                        .1144767
- hohh_female |   -.008588    .076389    -0.11  
->  0.911                                       
->           -.1587726                          
->                        .1415966
-    hohh_age |  -.0032794   .0021437    -1.53  
->  0.127                                       
->            -.007494                          
->                        .0009351
-hohh_compl~y |   .1638128   .0631869     2.59  
->  0.010                                       
->            .0395843                          
->                        .2880413
-househol~e_b |  -.0005197   .0157263    -0.03  
->  0.974                                       
->           -.0314385                          
->                         .030399
-       _cons |   .4324553   .1107059     3.91  
->  0.000                                       
->            .2148021                          
->                        .6501086
------------------------------------------------
-> -------------------------------
-. est sto r6 
-. 
-. 
-. esttab r* , b(3) se(3) star(* 0.10 ** 0.05 **
-> * 0.01) stats(N r2) drop(_cons ${controles}),
->  using "resultados.doc",rtf replace
-(file resultados.doc not found)
-(output written to resultados.doc)
+. outreg2 using regressionUnica.doc, title("Tabla 2. Tabla de balance") rep
+> lace bdec(3) 
+regressionUnica.doc
+dir : seeout
 . 
 . }
 
 . 
-end of do-file
-
-. do "C:\Users\POWER\AppData\Local\Temp\STD85c4_000000.tmp"
-
-. *Calcule el impacto del programa sobre si el hogar tenía una cuenta activa de bKash (active_account) y dos resultados de interés: suficiencia calórica 
->  (normal_calorie_sufficiency), y asistencia escolar (attendance).  Para cada variable de resultado, estimen primero los resultados sin controles (prime
-> ra columna), y después controlando por las siguientes variables: sexo, edad, si el jefe de hogar completó primaria, y el tamaño del hogar  (segunda col
-> umna de cada resultado).
+. *Punto 5 ----------------------------------------------------------------
+> -------
+. *Calcule el impacto del programa sobre si el hogar tenía una cuenta activ
+> a de bKash (active_account) y dos resultados de interés: suficiencia caló
+> rica  (normal_calorie_sufficiency), y asistencia escolar (attendance).  P
+> ara cada variable de resultado, estimen primero los resultados sin contro
+> les (primera columna), y después controlando por las siguientes variables
+> : sexo, edad, si el jefe de hogar completó primaria, y el tamaño del hoga
+> r  (segunda columna de cada resultado).
 . {
-. global controles hohh_female hohh_age hohh_completed_primary household_size_b
+. global controles hohh_female hohh_age hohh_completed_primary household_si
+> ze_b
 . 
 . *Regresión básica - Cuenta activa
 . reg active_account treatment,r
 
-Linear regression                               Number of obs     =        813
-                                                F(1, 811)         =     247.53
-                                                Prob > F          =     0.0000
-                                                R-squared         =     0.2334
-                                                Root MSE          =     .43707
+Linear regression                               Number of obs     =        
+> 813
+                                                F(1, 811)         =     247
+> .53
+                                                Prob > F          =     0.0
+> 000
+                                                R-squared         =     0.2
+> 334
+                                                Root MSE          =     .43
+> 707
 
-------------------------------------------------------------------------------
+---------------------------------------------------------------------------
+> ---
              |               Robust
-active_acc~t | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
--------------+----------------------------------------------------------------
-   treatment |   .4818245   .0306249    15.73   0.000     .4217111    .5419378
-       _cons |   .2189055   .0206491    10.60   0.000     .1783734    .2594375
-------------------------------------------------------------------------------
+active_acc~t | Coefficient  std. err.      t    P>|t|     [95% conf. interv
+> al]
+-------------+-------------------------------------------------------------
+> ---
+   treatment |   .4818245   .0306249    15.73   0.000     .4217111    .5419
+> 378
+       _cons |   .2189055   .0206491    10.60   0.000     .1783734    .2594
+> 375
+---------------------------------------------------------------------------
+> ---
 . est sto r1 
 . 
 . *Regresión con controles - Cuenta activa 
 . reg active_account treatment ${controles},r
 
-Linear regression                               Number of obs     =        813
-                                                F(5, 807)         =      54.54
-                                                Prob > F          =     0.0000
-                                                R-squared         =     0.2420
-                                                Root MSE          =      .4357
+Linear regression                               Number of obs     =        
+> 813
+                                                F(5, 807)         =      54
+> .54
+                                                Prob > F          =     0.0
+> 000
+                                                R-squared         =     0.2
+> 420
+                                                Root MSE          =      .4
+> 357
 
-----------------------------------------------------------------------------------------
-                       |               Robust
-        active_account | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
------------------------+----------------------------------------------------------------
-             treatment |   .4834017   .0305696    15.81   0.000     .4233964     .543407
-           hohh_female |   .1044925   .0510385     2.05   0.041     .0043088    .2046763
-              hohh_age |  -.0019787   .0012353    -1.60   0.110    -.0044035    .0004461
-hohh_completed_primary |    .062452   .0420511     1.49   0.138    -.0200905    .1449945
-      household_size_b |   .0114977   .0103139     1.11   0.265    -.0087475    .0317429
-                 _cons |   .2428445   .0642655     3.78   0.000     .1166972    .3689917
-----------------------------------------------------------------------------------------
+---------------------------------------------------------------------------
+> ---
+             |               Robust
+active_acc~t | Coefficient  std. err.      t    P>|t|     [95% conf. interv
+> al]
+-------------+-------------------------------------------------------------
+> ---
+   treatment |   .4834017   .0305696    15.81   0.000     .4233964     .543
+> 407
+ hohh_female |   .1044925   .0510385     2.05   0.041     .0043088    .2046
+> 763
+    hohh_age |  -.0019787   .0012353    -1.60   0.110    -.0044035    .0004
+> 461
+hohh_compl~y |    .062452   .0420511     1.49   0.138    -.0200905    .1449
+> 945
+househol~e_b |   .0114977   .0103139     1.11   0.265    -.0087475    .0317
+> 429
+       _cons |   .2428445   .0642655     3.78   0.000     .1166972    .3689
+> 917
+---------------------------------------------------------------------------
+> ---
 . est sto r4 
 . 
 . *Regresión básica - Suficiencia Calorica
 . reg normal_calorie_sufficiency treatment,r
 
-Linear regression                               Number of obs     =        813
-                                                F(1, 811)         =       3.49
-                                                Prob > F          =     0.0623
-                                                R-squared         =     0.0043
-                                                Root MSE          =     123.87
+Linear regression                               Number of obs     =        
+> 813
+                                                F(1, 811)         =       3
+> .49
+                                                Prob > F          =     0.0
+> 623
+                                                R-squared         =     0.0
+> 043
+                                                Root MSE          =     123
+> .87
 
-------------------------------------------------------------------------------
+---------------------------------------------------------------------------
+> ---
              |               Robust
-no~fficiency | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
--------------+----------------------------------------------------------------
-   treatment |   16.22284   8.689892     1.87   0.062     -.834494    33.28017
-       _cons |   -275.433   6.199671   -44.43   0.000    -287.6023   -263.2637
-------------------------------------------------------------------------------
+no~fficiency | Coefficient  std. err.      t    P>|t|     [95% conf. interv
+> al]
+-------------+-------------------------------------------------------------
+> ---
+   treatment |   16.22284   8.689892     1.87   0.062     -.834494    33.28
+> 017
+       _cons |   -275.433   6.199671   -44.43   0.000    -287.6023   -263.2
+> 637
+---------------------------------------------------------------------------
+> ---
 . est sto r2
 . 
 . *Regresión con controles - Suficiencia Calorica
 . reg normal_calorie_sufficiency treatment ${controles},r
 
-Linear regression                               Number of obs     =        813
-                                                F(5, 807)         =      98.64
-                                                Prob > F          =     0.0000
-                                                R-squared         =     0.4418
-                                                Root MSE          =     92.978
+Linear regression                               Number of obs     =        
+> 813
+                                                F(5, 807)         =      98
+> .64
+                                                Prob > F          =     0.0
+> 000
+                                                R-squared         =     0.4
+> 418
+                                                Root MSE          =     92.
+> 978
 
-----------------------------------------------------------------------------------------
-                       |               Robust
-normal_calorie_suffi~y | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
------------------------+----------------------------------------------------------------
-             treatment |   14.33246   6.574214     2.18   0.030     1.427884    27.23704
-           hohh_female |   63.66007   9.687236     6.57   0.000     44.64492    82.67522
-              hohh_age |  -.6198895   .2527786    -2.45   0.014    -1.116071   -.1237083
-hohh_completed_primary |   .8155021   9.831444     0.08   0.934    -18.48272    20.11372
-      household_size_b |  -44.80443   2.639366   -16.98   0.000    -49.98527    -39.6236
-                 _cons |  -83.26966   14.17956    -5.87   0.000    -111.1028   -55.43649
-----------------------------------------------------------------------------------------
+---------------------------------------------------------------------------
+> ---
+             |               Robust
+no~fficiency | Coefficient  std. err.      t    P>|t|     [95% conf. interv
+> al]
+-------------+-------------------------------------------------------------
+> ---
+   treatment |   14.33246   6.574214     2.18   0.030     1.427884    27.23
+> 704
+ hohh_female |   63.66007   9.687236     6.57   0.000     44.64492    82.67
+> 522
+    hohh_age |  -.6198895   .2527786    -2.45   0.014    -1.116071   -.1237
+> 083
+hohh_compl~y |   .8155021   9.831444     0.08   0.934    -18.48272    20.11
+> 372
+househol~e_b |  -44.80443   2.639366   -16.98   0.000    -49.98527    -39.6
+> 236
+       _cons |  -83.26966   14.17956    -5.87   0.000    -111.1028   -55.43
+> 649
+---------------------------------------------------------------------------
+> ---
 . est sto r5
 . 
 . 
 . *Regresión básica - Asistencia escolar
 . reg attendance treatment, r
 
-Linear regression                               Number of obs     =        397
-                                                F(1, 395)         =       0.47
-                                                Prob > F          =     0.4930
-                                                R-squared         =     0.0012
-                                                Root MSE          =     .46734
+Linear regression                               Number of obs     =        
+> 397
+                                                F(1, 395)         =       0
+> .47
+                                                Prob > F          =     0.4
+> 930
+                                                R-squared         =     0.0
+> 012
+                                                Root MSE          =     .46
+> 734
 
-------------------------------------------------------------------------------
+---------------------------------------------------------------------------
+> ---
              |               Robust
-  attendance | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
--------------+----------------------------------------------------------------
-   treatment |    .032203   .0469331     0.69   0.493    -.0600669    .1244728
-       _cons |   .3027027   .0338632     8.94   0.000     .2361281    .3692773
-------------------------------------------------------------------------------
+  attendance | Coefficient  std. err.      t    P>|t|     [95% conf. interv
+> al]
+-------------+-------------------------------------------------------------
+> ---
+   treatment |    .032203   .0469331     0.69   0.493    -.0600669    .1244
+> 728
+       _cons |   .3027027   .0338632     8.94   0.000     .2361281    .3692
+> 773
+---------------------------------------------------------------------------
+> ---
 . est sto r3
 . 
 . *Regresión con controles - Asistencia escolar
 . reg attendance treatment ${controles},r
 
-Linear regression                               Number of obs     =        397
-                                                F(5, 391)         =       2.39
-                                                Prob > F          =     0.0377
-                                                R-squared         =     0.0320
-                                                Root MSE          =     .46241
+Linear regression                               Number of obs     =        
+> 397
+                                                F(5, 391)         =       2
+> .39
+                                                Prob > F          =     0.0
+> 377
+                                                R-squared         =     0.0
+> 320
+                                                Root MSE          =     .46
+> 241
 
-----------------------------------------------------------------------------------------
-                       |               Robust
-            attendance | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
------------------------+----------------------------------------------------------------
-             treatment |   .0219891   .0470423     0.47   0.640    -.0704985    .1144767
-           hohh_female |   -.008588    .076389    -0.11   0.911    -.1587726    .1415966
-              hohh_age |  -.0032794   .0021437    -1.53   0.127     -.007494    .0009351
-hohh_completed_primary |   .1638128   .0631869     2.59   0.010     .0395843    .2880413
-      household_size_b |  -.0005197   .0157263    -0.03   0.974    -.0314385     .030399
-                 _cons |   .4324553   .1107059     3.91   0.000     .2148021    .6501086
-----------------------------------------------------------------------------------------
+---------------------------------------------------------------------------
+> ---
+             |               Robust
+  attendance | Coefficient  std. err.      t    P>|t|     [95% conf. interv
+> al]
+-------------+-------------------------------------------------------------
+> ---
+   treatment |   .0219891   .0470423     0.47   0.640    -.0704985    .1144
+> 767
+ hohh_female |   -.008588    .076389    -0.11   0.911    -.1587726    .1415
+> 966
+    hohh_age |  -.0032794   .0021437    -1.53   0.127     -.007494    .0009
+> 351
+hohh_compl~y |   .1638128   .0631869     2.59   0.010     .0395843    .2880
+> 413
+househol~e_b |  -.0005197   .0157263    -0.03   0.974    -.0314385     .030
+> 399
+       _cons |   .4324553   .1107059     3.91   0.000     .2148021    .6501
+> 086
+---------------------------------------------------------------------------
+> ---
 . est sto r6 
 . 
 . 
-. esttab r* , b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N r2) drop(_cons ${controles}), using "resultados.doc",rtf replace
-file resultados.doc is read-only; cannot be modified or erased
-r(608);
+. esttab r* , b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N r2) drop(_co
+> ns ${controles}), using "resultados.doc",rtf replace
+(output written to resultados.doc)
 . 
 . }
-r(608);
-
-end of do-file
-
-r(608);
-
-. do "C:\Users\POWER\AppData\Local\Temp\STD85c4_000000.tmp"
-
-. * Crear la variable de interacción:
-. gen treatment_female_study = treatment * hohh_female
 
 . 
-end of do-file
-
-. do "C:\Users\POWER\AppData\Local\Temp\STD85c4_000000.tmp"
-
-. label variable treatment_female "Jefe mujer"
-
+. **# 7. Efectos heterogeneos:
+. /*
+> Calcule los efectos heterogéneos del programa sobre las horas de estudio 
+> (study_hour) por el género del jefe de hogar (hohh_female; =1 si el jefe 
+> de hogar es mujer, 0 si hombre). Interprete los tres coeficientes de su r
+> egresión, y su intercepto. ¿Hay un efecto del programa diferenciado para 
+> hogares liderados por hombres versus mujeres?  
+> */
 . 
-end of do-file
-
-. do "C:\Users\POWER\AppData\Local\Temp\STD85c4_000000.tmp"
-
-. 
-. reg study_hour treatment hohh_female treatment_female, r
-
-Linear regression                               Number of obs     =        397
-                                                F(3, 393)         =       2.16
-                                                Prob > F          =     0.0924
-                                                R-squared         =     0.0157
-                                                Root MSE          =      1.461
-
-----------------------------------------------------------------------------------------
-                       |               Robust
-            study_hour | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
------------------------+----------------------------------------------------------------
-             treatment |   .3480295   .1538341     2.26   0.024     .0455889    .6504702
-           hohh_female |   .2977273   .3339325     0.89   0.373    -.3587902    .9542447
-treatment_female_study |  -.8151348   .4627563    -1.76   0.079    -1.724922    .0946527
-                 _cons |   2.327273   .1032033    22.55   0.000     2.124373    2.530172
-----------------------------------------------------------------------------------------
-
-. 
-end of do-file
-
-. do "C:\Users\POWER\AppData\Local\Temp\STD85c4_000000.tmp"
-
-. eststo heterogeneity
-
-. esttab heterogeneity, b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N r2) drop(_cons) using "resultados_heterogeneos.doc", rtf replace label
-invalid 'rtf' 
-r(198);
-
-end of do-file
-
-r(198);
-
-. do "C:\Users\POWER\AppData\Local\Temp\STD85c4_000000.tmp"
-
-. eststo heterogeneity
-
-. esttab heterogeneity, b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N r2) drop(_cons) using "resultados_heterogeneos.doc", rtf replace
-invalid 'rtf' 
-r(198);
-
-end of do-file
-
-r(198);
-
-. do "C:\Users\POWER\AppData\Local\Temp\STD85c4_000000.tmp"
-
-. eststo heterogeneity
-
-. esttab heterogeneity, b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N r2) drop(_cons) using "resultados_heterogeneos.doc",rtf replace
-invalid 'rtf' 
-r(198);
-
-end of do-file
-
-r(198);
-
-. do "C:\Users\POWER\AppData\Local\Temp\STD85c4_000000.tmp"
-
-. eststo heterogeneity
-
-. esttab heterogeneity, b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N r2), using "resultados_heterogeneos.doc",rtf replace label
-(file resultados_heterogeneos.doc not found)
-(output written to resultados_heterogeneos.doc)
-
-. 
-end of do-file
-
-. do "C:\Users\POWER\AppData\Local\Temp\STD85c4_000000.tmp"
-
+. {
 . * Crear la variable de interacción:
 . label variable hohh_female "Jefe del hogar es mujer"
-
-. 
-end of do-file
-
-. do "C:\Users\POWER\AppData\Local\Temp\STD85c4_000000.tmp"
-
+. gen treatment_female_study = treatment * hohh_female
 . label variable treatment_female "Capacitación * Jefe mujer"
-
 . 
-end of do-file
-
-. do "C:\Users\POWER\AppData\Local\Temp\STD85c4_000000.tmp"
-
 . reg study_hour treatment hohh_female treatment_female, r
 
-Linear regression                               Number of obs     =        397
-                                                F(3, 393)         =       2.16
-                                                Prob > F          =     0.0924
-                                                R-squared         =     0.0157
-                                                Root MSE          =      1.461
+Linear regression                               Number of obs     =        
+> 397
+                                                F(3, 393)         =       2
+> .16
+                                                Prob > F          =     0.0
+> 924
+                                                R-squared         =     0.0
+> 157
+                                                Root MSE          =      1.
+> 461
 
-----------------------------------------------------------------------------------------
-                       |               Robust
-            study_hour | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
------------------------+----------------------------------------------------------------
-             treatment |   .3480295   .1538341     2.26   0.024     .0455889    .6504702
-           hohh_female |   .2977273   .3339325     0.89   0.373    -.3587902    .9542447
-treatment_female_study |  -.8151348   .4627563    -1.76   0.079    -1.724922    .0946527
-                 _cons |   2.327273   .1032033    22.55   0.000     2.124373    2.530172
-----------------------------------------------------------------------------------------
-
+---------------------------------------------------------------------------
+> ---
+             |               Robust
+  study_hour | Coefficient  std. err.      t    P>|t|     [95% conf. interv
+> al]
+-------------+-------------------------------------------------------------
+> ---
+   treatment |   .3480295   .1538341     2.26   0.024     .0455889    .6504
+> 702
+ hohh_female |   .2977273   .3339325     0.89   0.373    -.3587902    .9542
+> 447
+treatment_~y |  -.8151348   .4627563    -1.76   0.079    -1.724922    .0946
+> 527
+       _cons |   2.327273   .1032033    22.55   0.000     2.124373    2.530
+> 172
+---------------------------------------------------------------------------
+> ---
 . eststo heterogeneity
-
-. esttab heterogeneity, b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N r2), using "resultados_heterogeneos.doc",rtf replace label
+. esttab heterogeneity, b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N r2
+> ), using "resultados_heterogeneos.doc",rtf replace label
 (output written to resultados_heterogeneos.doc)
+. }
 
 . 
-end of do-file
-
+. log close
+      name:  <unnamed>
+       log:  D:\OneDrive - Universidad de los andes\EPP\Talleres\Do\Eval_PP
+> \taller3_grupo4.log
+  log type:  text
+ closed on:  23 Sep 2024, 21:00:14
+---------------------------------------------------------------------------
