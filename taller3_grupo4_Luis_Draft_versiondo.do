@@ -1,9 +1,9 @@
 
 *==============================================================================*
 *				 		EVALUACION POLITICA PUBICA   2024-2					   *
-*							TALLER 3 Do file								   *
+*							TALLER 3 DO file								   *
 * 	POR: Laura Pardo, José E González, Julián Pulido  Luis Castellanos   	   *
-* 							23 de Septiembre  DE 2024						   *
+* 							22 de Septiembre  DE 2024						   *
 * 							 	STATA 18.0									   *  
 *==============================================================================*
 
@@ -23,61 +23,48 @@ set more off
 *CD Luis
 cd "D:\OneDrive - Universidad de los andes\EPP\Talleres\Do\Eval_PP"
 
-*CD José
-*cd "C:\Users\jedog\OneDrive\Desktop\SEMESTRE 2024-2\EVALUACIÓN DE POLÍTICAS PÚBLICAS\TALLERES\TALLER 3"
-
 log using "taller3_grupo4.log", replace /*Empezar el log file*/
 
 use "taller_3_base - Copy.dta", clear
 
 *________________________________________________________________________________
 
-* Punto 4- Balance muestral ----------------------------------------------------
+* 1. Balance muestral
+* -------------------------------------------------------------------------------
 {
-// Ejecuta los T-tests solo con las variables seleccionadas
+
 table (command) (result), ///
-    command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
-    Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest mean_annual_wage_inc_b, by(treatment)) ///
-    command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
-    Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest num_migrants_b, by(treatment)) ///
-    command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
-    Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest saved_past_year_b, by(treatment)) ///
-    command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
-    Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest num_children_b, by(treatment)) ///
-    command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
-    Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest log_tot_loanvalue_1_b, by(treatment)) ///
-    command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
-    Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest productivity_b, by(treatment)) ///
-    command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
-    Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest below_ipoverty_line_b, by(treatment)) ///
-    command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
-    Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest household_size_b, by(treatment)) ///
-    command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
-    Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest anymobile, by(treatment)) ///
-    command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
-    Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest normal_meals_b, by(treatment)) ///
-    command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
-    Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest normal_calories_b, by(treatment)) ///
-    command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
-    Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest consumption_value_b, by(treatment)) ///
-    nformat(%3.2f) stars(p_value 0.1 "*" 0.05 "**" 0.01 "***", shownote) name(t_test1) replace
+command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
+  Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest daily_wage_b, by(treatment)) ///
+command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
+  Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest mean_annual_wage_inc_b, by(treatment)) ///
+command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
+  Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest num_migrants_b, by(treatment)) ///
+command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
+  Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest migrant_annual_wage_inc_b, by(treatment)) ///
+command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
+  Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest num_migrants_b, by(treatment)) ///
+command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
+  Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest saved_past_year_b, by(treatment)) ///
+command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
+  Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest num_children_b, by(treatment)) ///
+command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
+  Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest ln_total_annual_wage_inc_b, by(treatment)) ///
+command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
+  Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest total_annual_wage_inc_1_b, by(treatment)) ///
+command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
+  Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest log_tot_loanvalue_1_b, by(treatment)) ///
+command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
+  Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest productivity_b, by(treatment)) ///
+command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
+  Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest below_ipoverty_line_b, by(treatment)) ///
+command(media_tratado=r(mu_2) de_tratado=r(sd_2) media_control=r(mu_1) de_control=r(sd_1) ///
+  Difference=(r(mu_2) - r(mu_1)) p_value=r(p): ttest household_size_b, by(treatment)) ///
+nformat(%3.2f) stars(p_value 0.1 "*" 0.05 "**" 0.01 "***", shownote) name(t_test1) replace
 
 // Ajusta la tabla después de correr los comandos
 collect set t_test1
-collect label levels command ///
-    1 "Media del Salario Anual" ///
-    2 "Numero de migrantes" ///
-    3 "Ahorrado en el pasado año" ///
-    4 "Numero de Niños en hogar" ///
-    5 "Logaritmo total Prestamo" ///
-    6 "Productividad" ///
-    7 "Debajo de la linea de Pobreza" ///
-    8 "Tamaño del hogar" ///
-    9 "Cualquier Móvil" ///
-    10 "Comidas Normales" ///
-    11 "Calorías Normales" ///
-    12 "Valor de Consumo", modify
-
+collect label levels command 1 "Salario Diario" 2 "Media del Salario Anual" 3 "Numero de migrantes" 4 "Salario Anual del Migrante" 5 "Numero de Migrantes" 6 "Ahorrado en el pasado año" 7 "Numero de Niños en hogar" 8 "Logaritmo salario anual" 9 "Salario total Anual" 10 "Logaritmo total Prestamo" 11 "Productividad" 12 "Debajo de la linea de Pobreza" 13 "Tamaño del hogar", modify
 collect title "Tabla. T-tests comparación tratados vs control"
 collect preview
 collect style cell command[2 4]#result[media_tratado de_tratado media_control de_control Difference p_value stars]
@@ -87,9 +74,17 @@ collect export t_test1.docx, replace
 	
 *) Enfoque 2: Análisis de regresión		
 
-reg treatment mean_annual_wage_inc_b num_migrants_b saved_past_year_b num_children_b log_tot_loanvalue_1_b productivity_b below_ipoverty_line_b household_size_b anymobile normal_calories_b consumption_value_b,r
+reg treatment daily_wage_b
+eststo M1
 
-outreg2 using regressionUnica.doc, title("Tabla 2. Tabla de balance") replace bdec(3) 
+reg treatment mean_annual_wage_inc_b
+eststo M2
+
+reg treatment num_migrants_b
+eststo M3
+
+// Exportar la tabla con el título
+outreg2 [M1 M2 M3] using 1.doc, title("Tabla 2. Tabla de balance") replace
 
 }
 
@@ -142,7 +137,11 @@ label variable treatment_female "Capacitación * Jefe mujer"
 reg study_hour treatment hohh_female treatment_female, r
 eststo heterogeneity
 esttab heterogeneity, b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N r2), using "resultados_heterogeneos.doc",rtf replace label
+*reg active_account treatment hohh_female treatment_female, r
+*reg normal_calorie_sufficiency treatment hohh_female treatment_female, r
+*reg attendance treatment hohh_female treatment_female, r
+
+
+	
 }
 
-log close
-exit

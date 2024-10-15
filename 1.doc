@@ -1,0 +1,28 @@
+{\rtf1\fs24
+\pard\qc
+Tabla 2. Tabla de balance\par
+\trowd\trgaph75\trleft-75\intbl\trqc\clbrdrt\brdrs\cellx3312\clbrdrt\brdrs\cellx4896\clbrdrt\brdrs\cellx6480\clbrdrt\brdrs\cellx7920
+\ql \cell\qc (1)\cell\qc (2)\cell\qc (3)\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx3312\cellx4896\cellx6480\cellx7920
+\ql \cell\qc M1\cell\qc M2\cell\qc M3\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx3312\cellx4896\cellx6480\cellx7920
+\trowd\trgaph75\trleft-75\trqc\clbrdrb\brdrs\cellx3312\clbrdrb\brdrs\cellx4896\clbrdrb\brdrs\cellx6480\clbrdrb\brdrs\cellx7920
+\ql VARIABLES\cell\qc treatment\cell\qc treatment\cell\qc treatment\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx3312\cellx4896\cellx6480\cellx7920
+\ql \cell\qc \cell\qc \cell\qc \cell\row
+\ql daily_wage_b\cell\qc -1.21e-05\cell\qc \cell\qc \cell\row
+\ql \cell\qc (0.000132)\cell\qc \cell\qc \cell\row
+\ql mean_annual_wage_inc_b\cell\qc \cell\qc 3.60e-08\cell\qc \cell\row
+\ql \cell\qc \cell\qc (3.88e-07)\cell\qc \cell\row
+\ql num_migrants_b\cell\qc \cell\qc \cell\qc 0.0228\cell\row
+\ql \cell\qc \cell\qc \cell\qc (0.0204)\cell\row
+\ql Constant\cell\qc 0.508***\cell\qc 0.503***\cell\qc 0.479***\cell\row
+\ql \cell\qc (0.0302)\cell\qc (0.0287)\cell\qc (0.0299)\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\row
+\ql Observations\cell\qc 813\cell\qc 813\cell\qc 813\cell\row
+\trowd\trgaph75\trleft-75\trqc\trbrdrb\brdrs\clbrdrb\brdrs\cellx3312\clbrdrb\brdrs\cellx4896\clbrdrb\brdrs\cellx6480\clbrdrb\brdrs\cellx7920
+\ql R-squared\cell\qc 0.000\cell\qc 0.000\cell\qc 0.002\cell\row
+\pard\qc
+Standard errors in parentheses\par
+*** p<0.01, ** p<0.05, * p<0.1\par
+}

@@ -1,0 +1,42 @@
+{\rtf1\fs24
+\pard\qc
+Tabla 2. Tabla de balance\par
+\trowd\trgaph75\trleft-75\intbl\trqc\clbrdrt\brdrs\cellx3312\clbrdrt\brdrs\cellx4752
+\ql \cell\qc (1)\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx3312\cellx4752
+\trowd\trgaph75\trleft-75\trqc\clbrdrb\brdrs\cellx3312\clbrdrb\brdrs\cellx4752
+\ql VARIABLES\cell\qc treatment\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx3312\cellx4752
+\ql \cell\qc \cell\row
+\ql mean_annual_wage_inc_b\cell\qc -0.000\cell\row
+\ql \cell\qc (0.000)\cell\row
+\ql num_migrants_b\cell\qc 0.078*\cell\row
+\ql \cell\qc (0.046)\cell\row
+\ql saved_past_year_b\cell\qc 0.077\cell\row
+\ql \cell\qc (0.092)\cell\row
+\ql num_children_b\cell\qc -0.022\cell\row
+\ql \cell\qc (0.054)\cell\row
+\ql log_tot_loanvalue_1_b\cell\qc -0.013\cell\row
+\ql \cell\qc (0.011)\cell\row
+\ql productivity_b\cell\qc 0.018\cell\row
+\ql \cell\qc (0.074)\cell\row
+\ql below_ipoverty_line_b\cell\qc -0.088\cell\row
+\ql \cell\qc (0.102)\cell\row
+\ql household_size_b\cell\qc 0.045\cell\row
+\ql \cell\qc (0.036)\cell\row
+\ql anymobile\cell\qc -0.012\cell\row
+\ql \cell\qc (0.237)\cell\row
+\ql normal_calories_b\cell\qc -0.001\cell\row
+\ql \cell\qc (0.001)\cell\row
+\ql consumption_value_b\cell\qc -0.000\cell\row
+\ql \cell\qc (0.000)\cell\row
+\ql Constant\cell\qc 0.498\cell\row
+\ql \cell\qc (0.305)\cell\row
+\ql \cell\qc \cell\row
+\ql Observations\cell\qc 174\cell\row
+\trowd\trgaph75\trleft-75\trqc\trbrdrb\brdrs\clbrdrb\brdrs\cellx3312\clbrdrb\brdrs\cellx4752
+\ql R-squared\cell\qc 0.045\cell\row
+\pard\qc
+Robust standard errors in parentheses\par
+*** p<0.01, ** p<0.05, * p<0.1\par
+}

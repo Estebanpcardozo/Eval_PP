@@ -1,0 +1,18 @@
+Tabla 2. Tabla de balance			
+	(1)	(2)	(3)
+	M1	M2	M3
+VARIABLES	treatment	treatment	treatment
+			
+daily_wage_b	-1.21e-05		
+	(0.000132)		
+mean_annual_wage_inc_b		3.60e-08	
+		(3.88e-07)	
+num_migrants_b			0.0228
+			(0.0204)
+Constant	0.508***	0.503***	0.479***
+	(0.0302)	(0.0287)	(0.0299)
+			
+Observations	813	813	813
+R-squared	0.000	0.000	0.002
+Standard errors in parentheses			
+*** p<0.01, ** p<0.05, * p<0.1			
