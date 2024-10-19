@@ -1,9 +1,9 @@
 
 *==============================================================================*
 *				 		EVALUACION POLITICA PUBICA   2024-2					   *
-*							TALLER 3 DO file								   *
+*							TALLER 4 DO file								   *
 * 	POR: Laura Pardo, José E González, Julián Pulido  Luis Castellanos   	   *
-* 							22 de Septiembre  DE 2024						   *
+* 							21 de Octubre DE 2024			 				   *
 * 							 	STATA 18.0									   *  
 *==============================================================================*
 
@@ -15,20 +15,39 @@ set more off
 *Establecemos un directorio de trabajo
 
 *CD Laura
-cd "C:\Users\Heitz\Desktop\Evaluación de Impacto  EGOB\Taller 3"
+cd "C:\Users\Heitz\Desktop\Evaluación de Impacto  EGOB\Taller 4"
 
 *CD Julian
-cd"/Users/User/Library/CloudStorage/OneDrive-Universidaddelosandes/2024-2 Evaluación de Políticas Públicas/Talleres/Taller 3-Evaluación Experimental/"
+*cd"/Users/User/Library/CloudStorage/OneDrive-Universidaddelosandes/2024-2 Evaluación de Políticas Públicas/Talleres/Taller 3-Evaluación Experimental/"
 
 *Rellenar directorio de trabajo para revisión
 *cd ""
 
-log using "taller3_grupo4.log", replace /*Empezar el log file*/
+log using "Taller4_grupo4.log", replace /*Empezar el log file*/
 
-use "taller_3_base - Copy.dta", clear
+use "taller_3_base.dta", clear
 
-*ssc install outreg, replace
 
+*_______________________________________________________________________________
+
+*Punto 2 -----------------------------------------------------------------------
+*2.	Corra la regresión anterior, usando la variable de active_account que indica si una persona tiene BKash, y mire las mismas dos variables de resultado del taller anterior: suficiencia calórica (normal_calorie_sufficiency) y asistencia escolar (attendance). Presente los resultados e interprete el coeficiente principal (tenga cuidado con el uso de lenguaje causal). 
+
+
+*global controles hohh_female hohh_age hohh_completed_primary household_size_b
+
+*Regresión básica - Suficiencia Calorica
+reg normal_calorie_sufficiency active_account ,r
+est sto r1 
+
+*Regresión básica - Asistencia escolar
+reg attendance active_account ,r
+est sto r2
+
+*Exportacion de resultados
+esttab r* , b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N r2) drop(_cons ${controles}), using "resultados.doc",rtf replace
+
+*Interpretaciones en el documento
 *_______________________________________________________________________________
 
 *Puntos 6,7,8
