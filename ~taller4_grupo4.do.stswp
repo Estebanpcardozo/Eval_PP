@@ -15,7 +15,7 @@ set more off
 *Establecemos un directorio de trabajo
 
 *CD Laura
-cd "C:\Users\Heitz\Desktop\Evaluación de Impacto  EGOB\Taller 4"
+cd "C:\Users\Heitz\Documents\Taller 4\Eval_PP"
 
 *CD Julian
 *cd"/Users/User/Library/CloudStorage/OneDrive-Universidaddelosandes/2024-2 Evaluación de Políticas Públicas/Talleres/Taller 3-Evaluación Experimental/"
@@ -25,7 +25,7 @@ cd "C:\Users\Heitz\Desktop\Evaluación de Impacto  EGOB\Taller 4"
 
 log using "Taller4_grupo4.log", replace /*Empezar el log file*/
 
-use "taller_3_base.dta", clear
+use "taller_3_base - Copy", clear
 
 
 *_______________________________________________________________________________

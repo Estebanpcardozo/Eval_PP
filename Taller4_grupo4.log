@@ -1,0 +1,197 @@
+-----------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\Heitz\Documents\Taller 4\Eval_PP\Taller4_grupo4.log
+  log type:  text
+ opened on:  19 Oct 2024, 18:44:16
+
+. 
+. use "taller_3_base - Copy", clear
+
+. 
+. 
+. *_______________________________________________________________________________
+. 
+. *Punto 2 -----------------------------------------------------------------------
+. *2.     Corra la regresión anterior, usando la variable de active_account que indica si una persona tiene BKash, y mire las mismas dos 
+> variables de resultado del taller anterior: suficiencia calórica (normal_calorie_sufficiency) y asistencia escolar (attendance). Presen
+> te los resultados e interprete el coeficiente principal (tenga cuidado con el uso de lenguaje causal). 
+. 
+. 
+. *global controles hohh_female hohh_age hohh_completed_primary household_size_b
+. 
+. *Regresión básica - Suficiencia Calorica
+. reg normal_calorie_sufficiency active_account ,r
+
+Linear regression                               Number of obs     =        813
+                                                F(1, 811)         =       3.52
+                                                Prob > F          =     0.0611
+                                                R-squared         =     0.0043
+                                                Root MSE          =     123.87
+
+--------------------------------------------------------------------------------
+               |               Robust
+norm~fficiency | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+---------------+----------------------------------------------------------------
+active_account |   16.35697   8.722156     1.88   0.061    -.7636874    33.47764
+         _cons |  -274.7967   5.887101   -46.68   0.000    -286.3524   -263.2409
+--------------------------------------------------------------------------------
+
+. est sto r1 
+
+. 
+. *Regresión básica - Asistencia escolar
+. reg attendance active_account ,r
+
+Linear regression                               Number of obs     =        397
+                                                F(1, 395)         =       1.97
+                                                Prob > F          =     0.1608
+                                                R-squared         =     0.0050
+                                                Root MSE          =     .46645
+
+--------------------------------------------------------------------------------
+               |               Robust
+    attendance | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+---------------+----------------------------------------------------------------
+active_account |   .0660358   .0469963     1.41   0.161    -.0263583    .1584299
+         _cons |   .2884615   .0314926     9.16   0.000     .2265475    .3503756
+--------------------------------------------------------------------------------
+
+. est sto r2
+
+. 
+. *Exportacion de resultados
+. esttab r* , b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N r2) drop(_cons ${controles}), using "resultados.doc",rtf replace
+(output written to resultados.doc)
+
+. 
+. *Interpretaciones en el documento
+. *_______________________________________________________________________________
+. 
+. *Puntos 6,7,8
+. 
+. *Primera Etapa - No controles
+. reg active_account treatment,r
+
+Linear regression                               Number of obs     =        813
+                                                F(1, 811)         =     247.53
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.2334
+                                                Root MSE          =     .43707
+
+------------------------------------------------------------------------------
+             |               Robust
+active_acc~t | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+   treatment |   .4818245   .0306249    15.73   0.000     .4217111    .5419378
+       _cons |   .2189055   .0206491    10.60   0.000     .1783734    .2594375
+------------------------------------------------------------------------------
+
+. est sto r1 
+
+. 
+. *Primera Etapa controles
+. reg active_account treatment ${controles},r
+
+Linear regression                               Number of obs     =        813
+                                                F(1, 811)         =     247.53
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.2334
+                                                Root MSE          =     .43707
+
+------------------------------------------------------------------------------
+             |               Robust
+active_acc~t | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+   treatment |   .4818245   .0306249    15.73   0.000     .4217111    .5419378
+       _cons |   .2189055   .0206491    10.60   0.000     .1783734    .2594375
+------------------------------------------------------------------------------
+
+. est sto r4 
+
+. 
+. 
+. *IV
+. ivreg2 normal_calorie_sufficiency (treatment=active_account)
+
+IV (2SLS) estimation
+--------------------
+
+Estimates efficient for homoskedasticity only
+Statistics consistent for homoskedasticity only
+
+                                                      Number of obs =      813
+                                                      F(  1,   811) =     3.51
+                                                      Prob > F      =   0.0615
+Total (centered) SS     =  12497499.96                Centered R2   =  -0.0007
+Total (uncentered) SS   =  70556135.42                Uncentered R2 =   0.8227
+Residual SS             =  12506524.64                Root MSE      =      124
+
+------------------------------------------------------------------------------
+no~fficiency | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+   treatment |   33.76102    18.0072     1.87   0.061    -1.532449    69.05449
+       _cons |  -284.2992   10.08916   -28.18   0.000    -304.0736   -264.5248
+------------------------------------------------------------------------------
+Underidentification test (Anderson canon. corr. LM statistic):         189.787
+                                                   Chi-sq(1) P-val =    0.0000
+------------------------------------------------------------------------------
+Weak identification test (Cragg-Donald Wald F statistic):              246.974
+Stock-Yogo weak ID test critical values: 10% maximal IV size             16.38
+                                         15% maximal IV size              8.96
+                                         20% maximal IV size              6.66
+                                         25% maximal IV size              5.53
+Source: Stock-Yogo (2005).  Reproduced by permission.
+------------------------------------------------------------------------------
+Sargan statistic (overidentification test of all instruments):           0.000
+                                                 (equation exactly identified)
+------------------------------------------------------------------------------
+Instrumented:         treatment
+Excluded instruments: active_account
+------------------------------------------------------------------------------
+
+. 
+. ivreg2 attendance (treatment=active_account ) ${controles}, r
+
+IV (2SLS) estimation
+--------------------
+
+Estimates efficient for homoskedasticity only
+Statistics robust to heteroskedasticity
+
+                                                      Number of obs =      397
+                                                      F(  1,   395) =     1.94
+                                                      Prob > F      =   0.1640
+Total (centered) SS     =  86.37279597                Centered R2   =  -0.0105
+Total (uncentered) SS   =          127                Uncentered R2 =   0.3128
+Residual SS             =  87.27907613                Root MSE      =    .4689
+
+------------------------------------------------------------------------------
+             |               Robust
+  attendance | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+   treatment |   .1332512   .0953183     1.40   0.162    -.0535693    .3200717
+       _cons |   .2487424   .0549443     4.53   0.000     .1410535    .3564313
+------------------------------------------------------------------------------
+Underidentification test (Kleibergen-Paap rk LM statistic):             98.367
+                                                   Chi-sq(1) P-val =    0.0000
+------------------------------------------------------------------------------
+Weak identification test (Cragg-Donald Wald F statistic):              128.991
+                         (Kleibergen-Paap rk Wald F statistic):        130.504
+Stock-Yogo weak ID test critical values: 10% maximal IV size             16.38
+                                         15% maximal IV size              8.96
+                                         20% maximal IV size              6.66
+                                         25% maximal IV size              5.53
+Source: Stock-Yogo (2005).  Reproduced by permission.
+NB: Critical values are for Cragg-Donald F statistic and i.i.d. errors.
+------------------------------------------------------------------------------
+Hansen J statistic (overidentification test of all instruments):         0.000
+                                                 (equation exactly identified)
+------------------------------------------------------------------------------
+Instrumented:         treatment
+Excluded instruments: active_account
+------------------------------------------------------------------------------
+
+. 
+. 
+end of do-file
+
