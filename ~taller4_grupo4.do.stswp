@@ -10,7 +10,7 @@
 cls
 clear all
 cap log close
-set more off
+set more off 
 *________________________________________________________________________________
 *Establecemos un directorio de trabajo
 
