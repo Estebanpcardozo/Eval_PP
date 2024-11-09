@@ -1,6 +1,6 @@
 *==============================================================================*
 *				 		EVALUACION POLITICA PUBICA   2024-2					   *
-*							TALLER 4 Do file								   *
+*							TALLER 5 Do file								   *
 * 	POR: Laura Pardo, José E González, Julián Pulido  Luis Castellanos   	   *
 * 							10 de Noviembre de 2024						   *
 * 							 	STATA 18.0									   *  
@@ -79,3 +79,25 @@ graph combine graph3.1.gph graph3.2.gph graph3.3.gph graph3.4.gph, ///
     title("Gráficas combinadas: Acceso a servicios y educación por intervalo de Sisbén") ///
     ysize(6) xsize(12)
 graph save "graph3.gph"
+
+* Punto 4- Estimación de las diferencias observadas en las gráficas para las características de balance ----------------------------------------------------
+
+gen sisben_std = sisben - 11
+
+*Característica de balance: Acceso a alcantarillado
+reg prop_Alcantarillado beneficiario sisben_std if abs(sisben_std)<5, r
+eststo: quietly reg prop_Alcantarillado beneficiario sisben_std if abs(sisben_std)<5, r
+
+*Característica de balance: Propietario de nevera
+reg prop_Nevera beneficiario sisben_std if abs(sisben_std)<5, r
+eststo: quietly reg prop_Nevera beneficiario sisben_std if abs(sisben_std)<5, r
+
+*Característica de balance: Nivel educativo jefes de familia
+reg prop_Secundaria beneficiario sisben_std if abs(sisben_std)<5, r
+eststo: quietly reg prop_Secundaria beneficiario sisben_std if abs(sisben_std)<5, r
+
+*Característica de balance: Asistencia a clases
+reg prop_Asistencia beneficiario sisben_std if abs(sisben_std)<5, r
+eststo: quietly reg prop_Asistencia beneficiario sisben_std if abs(sisben_std)<5, r
+
+outreg2 [est1 est2 est3 est4] using resultados_punto4.doc, replace
