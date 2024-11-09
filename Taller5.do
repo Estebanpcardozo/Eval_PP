@@ -1,6 +1,6 @@
 *==============================================================================*
 *				 		EVALUACION POLITICA PUBICA   2024-2					   *
-*							TALLER 4 Do file								   *
+*							TALLER 5 Do file								   *
 * 	POR: Laura Pardo, José E González, Julián Pulido  Luis Castellanos   	   *
 * 							10 de Noviembre de 2024						   *
 * 							 	STATA 18.0									   *  
