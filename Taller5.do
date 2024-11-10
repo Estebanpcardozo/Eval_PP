@@ -129,16 +129,17 @@ rdrobust prop_Asistencia sisben_std, fuzzy(beneficiario) covs(prop_Nevera prop_S
 }
 
 *Punto 6 - Estime el impacto en las dos variables de resultado para anchos de banda de h=5 y h=10
-
+ cls
+ 
 *jefe de hogar
 rdrobust empleojefe sisben_std,  covs(prop_Alcantarillado prop_Asistencia  prop_Nevera prop_Secundaria) c(0) h(5)
 
 rdrobust empleojefe sisben_std,  covs(prop_Alcantarillado prop_Asistencia  prop_Nevera prop_Secundaria) c(0) h(10)
 
 *Trabajo infantil
-rdrobust tinfantil sisben_std, fuzzy(beneficiario) covs(prop_Alcantarillado prop_Asistencia  prop_Nevera prop_Secundaria) c(0) h(5)
+rdrobust tinfantil sisben_std, covs(prop_Alcantarillado prop_Asistencia  prop_Nevera prop_Secundaria) c(0) h(5)
 
-rdrobust tinfantil sisben_std, fuzzy(beneficiario) covs(prop_Alcantarillado prop_Asistencia  prop_Nevera prop_Secundaria) c(0) h(10)
+rdrobust tinfantil sisben_std, covs(prop_Alcantarillado prop_Asistencia  prop_Nevera prop_Secundaria) c(0) h(10)
 
 *Punto 7 -Escriba la ecuación (o ecuaciones) para estimar el efecto local promedio de recibir FeA 
 *jefe de hogar
