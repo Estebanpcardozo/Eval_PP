@@ -151,3 +151,17 @@ rdrobust empleojefe sisben_std, fuzzy(beneficiario) covs(prop_Alcantarillado pro
 rdrobust tinfantil sisben_std, fuzzy(beneficiario) covs(prop_Alcantarillado prop_Asistencia  prop_Nevera prop_Secundaria) c(0) h(5)
 
 rdrobust tinfantil sisben_std, fuzzy(beneficiario) covs(prop_Alcantarillado prop_Asistencia  prop_Nevera prop_Secundaria) c(0) h(10)
+
+
+
+*Bono - NO manipulación
+*1er métdodo
+kdensity sisben_std, xline(0,lcol(red) lp("--")) lcol(black)	
+
+*Segundo mètodo
+	rddensity sisben_std
+	rddensity sisben_std, plot  graph_opt(title("Test de manipulación") 					///
+		xtitle("Clasificación de SISBEN 1")   					///
+		ytitle("Densidad de la variable de focalización")  						///
+		scheme(s1mono) legend(off) graphregion(fcolor(white))) 
+	
