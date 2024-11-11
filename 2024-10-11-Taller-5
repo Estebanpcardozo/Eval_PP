@@ -141,6 +141,39 @@ rdrobust Tiene_Recoleccion_Basura sisben_std, fuzzy(beneficiario) covs(Tiene_Nev
 
 }
 
+* Punto 5- Gráfica de las variables de resultado contra el puntaje Sisbén ----------------------------------------------------
+
+egen prop_Empleojefe = mean(empleojefe), by(intervalo)
+label var prop_Empleojefe "Proporción de hogares cuyo jefe de hogar tiene empleo"
+
+scatter prop_Empleojefe intervalo, msymbol(oh) mlcolor(gs1) ///
+       || lowess prop_Empleojefe sisben if sisben<=11, bw(.6) lcolor(gs6) clwidth(medthick) ///
+       || lowess prop_Empleojefe sisben if sisben>11 & sisben<=21, bw(.6) lcolor(gs6) clwidth(medthick) ///
+       ||, xline(11) xlabel(0(1)21) ylabel(, glcolor(gs14) glwidth(thin)) ///
+       legend(position(8) ring(0) cols(1) row(1) order(1 2)) ///
+       xtitle("Intervalo de Sisbén") ytitle("Proporción de hogares cuyo jefe de hogar tiene empleo") ///
+       title("Empleo de jefes de hogar por intervalo de Sisbén")
+graph save "graph5.1.gph", replace
+
+egen prop_tinfantil = mean(tinfantil), by(intervalo)
+label var prop_tinfantil "Proporción de hogares en los que algún niño o niña trabaja"
+
+scatter prop_tinfantil intervalo, msymbol(oh) mlcolor(gs1) ///
+       || lowess prop_tinfantil sisben if sisben<=11, bw(.6) lcolor(gs6) clwidth(medthick) ///
+       || lowess prop_tinfantil sisben if sisben>11 & sisben<=21, bw(.6) lcolor(gs6) clwidth(medthick) ///
+       ||, xline(11) xlabel(0(1)21) ylabel(, glcolor(gs14) glwidth(thin)) ///
+       legend(position(8) ring(0) cols(1) row(1) order(1 2)) ///
+       xtitle("Intervalo de Sisbén") ytitle("Proporción de hogares en los que algún niño o niña trabaja") ///
+       title("Empleo de niños y niñas en el hogar por intervalo de Sisbén")
+graph save "graph5.2.gph", replace
+
+graph combine graph5.1.gph graph5.2.gph, ///
+    cols(2) ///
+    title("Gráficas combinadas: Empleo de jefes de hogar y Empleo de niños y niñas en el hogar, por intervalo de Sisbén") ///
+    ysize(6) xsize(12)
+graph save "graph5.gph"
+
+
 *Punto 6 - Estime el impacto en las dos variables de resultado para anchos de banda de h=5 y h=10
 cls
  
