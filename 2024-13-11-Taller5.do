@@ -16,12 +16,12 @@ set more off
 *CD José Eduardo
 *cd "C:\Users\jedog\OneDrive\Desktop\SEMESTRE 2024-2\EVALUACIÓN DE POLÍTICAS PÚBLICAS\TALLERES\TALLER 5"
 
-*cd "/Users/User/Library/CloudStorage/OneDrive-Universidaddelosandes/2024-2 Evaluación de Políticas Públicas/Talleres"
+cd "/Users/User/Library/CloudStorage/OneDrive-Universidaddelosandes/2024-2 Evaluación de Políticas Públicas/Talleres"
 
 
 *cd "C:\Users\User\OneDrive\OneDrive - Universidad de los andes\EPP\Talleres\Taller 5"
 
-*log using "taller5_grupo4.log", replace /*Empezar el log file*/
+log using "taller5_grupo4.log", replace /*Empezar el log file*/
 *_________________________________________________________________________________
 *Directorio de Jose
 cd "C:\Users\Heitz\Desktop\Evaluación de Impacto  EGOB\Taller 5"
@@ -142,7 +142,7 @@ est sto r4
 *rdrobust Tiene_Recoleccion_Basura sisben_std, fuzzy(beneficiario) covs(Tiene_Nevera Jefe_Secundaria_Completa Tiene_Alcantarillado) c(0) h(5) all //1.4% al 95%
 
 *Exportacion de resultados
-esttab r* , b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N r2), using "Punto4.doc", rtf replace
+esttab r* , b(3) se(3) star(* 0.10 * 0.05 ** 0.01) stats(N  N_h_l N_h_r), using "Punto4.doc", rtf replace
 
 }
 
@@ -197,7 +197,7 @@ est sto r333
 eststo: rdrobust tinfantil sisben_std,  c(0) h(10)
 est sto r444
 
-esttab r111 r222 r333 r444 , b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N r2) , using "Punto6.doc", rtf replace
+esttab r111 r222 r333 r444 , b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N  N_h_l N_h_r) , using "Punto6.doc", rtf replace
 
 
 *Punto 7 -Escriba la ecuación (o ecuaciones) para estimar el efecto local promedio de recibir FeA 
@@ -215,7 +215,7 @@ est sto r777
 eststo:rdrobust tinfantil sisben_std, fuzzy(beneficiario)  c(0) h(10)
 est sto r888
 
-esttab r555 r666 r777 r888 , b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N r2) , using "Punto7.doc", rtf replace
+esttab r555 r666 r777 r888 , b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N  N_h_l N_h_r) , using "Punto7.doc", rtf replace
 
 
 *Bono - NO manipulación
@@ -229,3 +229,4 @@ kdensity sisben_std, xline(0,lcol(red) lp("--")) lcol(black)
 		ytitle("Densidad de la variable de focalización")  						///
 		scheme(s1mono) legend(off) graphregion(fcolor(white))) 
 	
+log close
