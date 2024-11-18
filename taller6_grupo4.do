@@ -18,7 +18,7 @@ set more off
 cd "C:\Users\Heitz\Desktop\Evaluación de Impacto  EGOB\Taller 6"
 
 *CD Julian
-
+cd "/Users/User/Library/CloudStorage/OneDrive-Universidaddelosandes/2024-2 Evaluación de Políticas Públicas/Talleres"
 
 *CD Luis
 
