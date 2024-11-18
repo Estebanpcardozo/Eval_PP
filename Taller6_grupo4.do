@@ -120,5 +120,8 @@ twoway (line mean_tayuda seguimiento if tratamiento == 0, ///
 
 
 	   
+
+
+	   
 	   
 	   
