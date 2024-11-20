@@ -24,7 +24,7 @@ cd "/Users/User/Library/CloudStorage/OneDrive-Universidaddelosandes/2024-2 Evalu
 
 
 *CD José
-
+cd "C:\Users\jedog\OneDrive\Desktop\SEMESTRE 2024-2\EVALUACIÓN DE POLÍTICAS PÚBLICAS\TALLERES\TALLER 6"
 
 log using "taller6_grupo4.log", replace /*Empezar el log file*/
 
@@ -72,7 +72,7 @@ est sto r4
 
 
 *Exportacion de resultados
-esttab r3 r4 , b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N r2), using "Punto1b.doc", rtf replace
+esttab r3 r4 , b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N r2), using "Punto1c.doc", rtf replace
 
 
 
