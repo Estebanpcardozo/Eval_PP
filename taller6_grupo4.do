@@ -3,7 +3,7 @@
 *				 		EVALUACION POLITICA PUBICA   2024-2					   *
 *							TALLER 6 Do file								   *
 * 	POR: Laura Pardo, José E González, Julián Pulido  Luis Castellanos   	   *
-* 							22 de Noviembre  DE 2024						   *
+* 							25 de Noviembre  DE 2024						   *
 * 							 	STATA 18.0									   *  
 *==============================================================================*
 
@@ -18,20 +18,22 @@ set more off
 cd "C:\Users\Heitz\Desktop\Evaluación de Impacto  EGOB\Taller 6"
 
 *CD Julian
-cd "/Users/User/Library/CloudStorage/OneDrive-Universidaddelosandes/2024-2 Evaluación de Políticas Públicas/Talleres"
+*cd "/Users/User/Library/CloudStorage/OneDrive-Universidaddelosandes/2024-2 Evaluación de Políticas Públicas/Talleres"
 
 *CD Luis
 
-
 *CD José
 
+*Abrimos el Log File
+log using "taller6_grupo4final.log", replace /*Empezar el log file*/
 
-log using "taller6_grupo4.log", replace /*Empezar el log file*/
-
+*Cargamos la base de datos
 use "Base_Taller_DD", clear
 
+*Corremos las instrucciones iniciales
 sort llavefin
 br
+*Estadisticas descriptivas de la base
 sum tratamiento,d
 sum seguimiento,d
 tab tratamiento
@@ -46,11 +48,13 @@ resultados de cada estimación.
 
 */
 
-
+*Generamos la variable de la interaccion
 gen interaccion = tratamiento*seguimiento
 
+*regresion var 1 
 eststo:reg ttrabajo tratamiento seguimiento interaccion, r
 est sto r1 
+*regresion var 2
 eststo: reg tayuda tratamiento seguimiento interaccion, r
 est sto r2
 
@@ -65,9 +69,11 @@ esttab r1 r2 , b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N r2), using "Punt
  Comente por qué cambió o no cambió.
 */
 
-eststo: reg ttrabajo tratamiento seguimiento interaccion activos durables
+*regresion  var 1 con controles
+eststo: reg ttrabajo tratamiento seguimiento interaccion activos durables,r
 est sto r3
-eststo: reg tayuda tratamiento seguimiento interaccion activos durables
+*regresion var 2 con controles
+eststo: reg tayuda tratamiento seguimiento interaccion activos durables,r
 est sto r4
 
 
@@ -75,13 +81,13 @@ est sto r4
 esttab r3 r4 , b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N r2), using "Punto1b.doc", rtf replace
 
 
-
-
-
 * Crear variables para promedios por grupo y período
 gen mean_ttrabajo = .
 gen mean_tayuda = .
 
+
+*Un intento de gráficas de tendencias paralelas, pero al ser dos periodos no 
+*son concluyentes.
 * Calcular promedios por período y grupo
 foreach var in ttrabajo tayuda {
     qui sum `var' if seguimiento == 0 & tratamiento == 1
